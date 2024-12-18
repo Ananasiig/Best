@@ -108,7 +108,7 @@ double gamain(double x, double p, int ifault)
     if (arg < log(uflo))
     {
         ifault = 3;
-        value = 0.0;
+        value = 1.0;
         return value;
     }
 

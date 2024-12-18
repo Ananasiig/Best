@@ -20,13 +20,18 @@ int main()
  //   ifstream belt("belt.bin", ios::binary);
  //   ifstream phys("phys.bin", ios::binary);
 
-//    ifstream etxt("e.txt");
-//    ifstream belttxt("belt.txt");
-//    ifstream phystxt("phys.txt");
+//    ifstream etxt("E:\\labs\\l0\\e.txt");
+//    ifstream belttxt("E:\\labs\\l0\\belt.txt");
+//    ifstream phystxt("E:\\labs\\l0\\phys.txt");
     
     double G = 0.1;
     
     string s = "0111000101", s2 = "0110101010101", s3 = "010110101001010";
+    for (int i = 1; i < 5; i++) {
+        s += s; 
+        s2 += s2;
+    }
+//    etxt >> s3;
 //    etxt >> s;
 //    belttxt >> s2;
 //   phystxt >> s3;
@@ -50,18 +55,18 @@ int main()
             prov /= 2;
         }
     }*/
+   
+       cout << "\t\tTEST 5.2\n";
+       for (int i = 1; i < 10; i++) {
+           cout << fixed << /*mdu(i, s) << "\t\t" << mdu(i, s2) << "\t\t" <<*/ mdu(i, s3) << "\n";
+       }
+       cout << "\n\n";
 
-    cout << "\t\tTEST 5.2\n";
-    for (int i = 1; i < 5; i++) {
-        cout << fixed << mdu(i, s) << "\t\t" << mdu(i, s2) << "\t\t"  << mdu(i, s3) << "\n";
-    }
-    cout << "\n\n";
+       cout << "\t\tTEST 5.3\n";
+       for (int i = 1; i < 5; i++) {
+           //      cout << mdu2(i, s) << "\t\t"  << mdu2(i, s2) << "\t\t"  << mdu2(i, s3) << "\n";
+       }
 
-    cout << "\t\tTEST 5.3\n";
-    for (int i = 1; i < 5; i++) {
-        cout << mdu2(i, s) << "\t\t"  << mdu2(i, s2) << "\t\t"  << mdu2(i, s3) << "\n";
-    }
-
-  //  cout << gamain(4.882605/2, 1.5, 1);
+       cout << gamain(807 / 2, 512 / 2, 1);
 
 }
