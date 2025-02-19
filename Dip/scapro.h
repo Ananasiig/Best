@@ -46,9 +46,9 @@ double scapro(int m, int K, string& x) {
 	double qmin = qk[0];
 	for (int k = 0; k <= m; k++) {
 		qmin = min(qmin, qk[k]);
-		cout << qk[k] << endl;
+//		cout << qk[k] << endl;
 	}
-	cout << endl;
+//	cout << endl;
 	if (1.0 * K / qmin > 0.1 * x.length() / m) { cout << 1.0 * K / qmin << ' ' << 0.1 * x.length() / m << '\n';  return -1; }
 	if (m != 2 && m != 3 && m != 4 && m != 5 && m != 6 && m != 7 && m != 8) { return -1; }
 	if (K != 2 && K != 3 && K != 4 && K != 5 && K != 6 && K != 7 && K != 8 && K != 9 && K != 10 && K != 11) { return -1; }
@@ -75,7 +75,7 @@ double scapro(int m, int K, string& x) {
 
 	for (int k = 0; k <= m; k++) {
 		s += pow(fk[k] - M * qk[k], 2)/(M*qk[k]);
-		cout << fk[k] << ' ' <<  M * qk[k] << endl;
+	//	cout << fk[k] << ' ' <<  M * qk[k] << endl;
 	}
 //	cout << s << endl;
 

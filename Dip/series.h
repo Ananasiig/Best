@@ -32,7 +32,7 @@ double series(string &x) {
 		cur = next;
 	}
 	for (int i = 0; i < k; i++) {
-		cout << nui[i] << ' ' << v[exam.substr(0, i + 1)] << endl;
+//		cout << nui[i] << ' ' << v[exam.substr(0, i + 1)] << endl;
 		s += (pow(v[exam.substr(0, i + 1)] - nui[i], 2) + (pow(v[exam.substr(k, i + 1)] - nui[i], 2)) )/ nui[i];
 		}
 //	cout << s << ' ' << v.size() << endl;

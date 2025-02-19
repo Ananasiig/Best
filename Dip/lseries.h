@@ -82,7 +82,7 @@ double lseries(int l, string& x) {
 
 	for (int i = 0; i < k+1; i++) {
 		s += pow(v[i] - m * pi[ij + i], 2)/(m*pi[ij+i]);
-		cout << v[i] << ' ' << m * pi[ij + i] << ' ' << s << endl;
+//		cout << v[i] << ' ' << m * pi[ij + i] << ' ' << s << endl;
 	}
 	return 1 - gamain(s, k, 1);
 }

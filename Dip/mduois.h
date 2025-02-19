@@ -3,33 +3,45 @@
 double mdu2(int l, string &x) {
 	//”—Ћќ¬»я ѕ–»ћ≈Ќ≈Ќ»я: n >= 20 * 2^l (l <= log2(n/20))
 
-	int u = pow(2, l), u2 = u / 2;
+	int u = pow(2, l), u2 = u / 2, k;
 	unordered_map<string, int> v, v2;
+	vector<int> vec(u), vec1(u2);
 	string sub;
-	double svalue = 0, gvalue = 0,gvalue2 = 0, n2_l = 1.0 * x.length() / (10*u), n2_l1 = 1.0 * x.length() / (10*u2);
+	double svalue = 0, gvalue = 0,gvalue2 = 0, n2_l = 1.0 * x.length() / u, n2_l1 = 1.0 * x.length() / u2;
 
 	x = x + x.substr(0, l);
 
 	if (x.length() < 20 * u) { return -1; }
 	///частоты l-фрагментов
 	//частоты (l-1)-фрагментов
-	for (int t = 0; t < x.length()/10; t++) {
-		++v[x.substr(t, l)];
-		++v2[x.substr(t, l - 1)];
+	for (int t = 0; t < x.length()-l+1; t++) {
+		k = 0;
+		for (int j = 0; j < l; j++) {
+			k <<= 1;
+			if (x[t + j] == '1')
+				k++;
+		}
+		vec[k]++;
+		k = 0;
+		for (int j = 0; j < l - 1; j++) {
+			k <<= 1;
+			if (x[t + j] == '1')
+				k++;
+		}
+		vec1[k]++;
 	}
 
-	//вычисление статистики
-	for (const auto& element : v) {
-		gvalue += 1.0 * pow(element.second - n2_l, 2) / n2_l;
-		
-	}
-	gvalue += 1.0 * (u - v.size()) * n2_l;
-	//вычисление статистики
-	for (const auto& element : v2) {
-		gvalue2 += 1.0 * pow(element.second - n2_l1, 2) / n2_l1;
 
+	//вычисление статистики
+
+	for (int i = 0; i < u; i++) {
+		gvalue += 1.0 * pow(vec[i] - n2_l, 2) / n2_l;
+		//		cout << vec[i]<< ' ' << vec1[i] << endl;
 	}
-	gvalue2 += 1.0 * (u - v.size()) * n2_l1;
+
+	for (int i = 0; i < 0.5 * u; i++) {
+		gvalue2 += 1.0 * pow(vec1[i] - n2_l1, 2) / n2_l1;
+	}
 
 	svalue = gvalue - gvalue2;
 		//возвращаем P-значение

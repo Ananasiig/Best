@@ -27,7 +27,7 @@ using namespace std;
 
 int main()
 {
-    ifstream e("E:\\labs\\l0\\e.bin", ios::binary);
+    ifstream e("E:\\labs\\l0\\phys.bin", ios::binary);
  //   ofstream e2("E:\\labs\\l0\\e2.txt");
  //   ifstream belt("belt.bin", ios::binary);
  //   ifstream phys("phys.bin", ios::binary);
@@ -113,55 +113,54 @@ int main()
         }
     }*/
    
- //      cout << "\t\tTEST 2.1\n";
- //      for (int i = 1; i < 10; i++) {
- //          cout << fixed << "L = " << i << ": " << mdu(i, s) << "\t\t" << mdu(i, s2) << "\t\t" << mdu(i, bitString) << "\n";
- //      }
- //      cout << "\n\n";
+       cout << "\t\tTEST 2.1\n";
+       for (int i = 3; i < 18; i++) {
+           cout << fixed << "L = " << i << ": " << mdu(i, s) << "\t\t" << mdu(i, s2) << "\t\t" << mdu(i, bitString) << "\n";
+       }
+       cout << "\n\n";
 
- //      cout << "\t\tTEST 2.2\n";
-  //     for (int i = 8; i < 17; i++) {
-  //               cout << "L = " << i << ": " << mdu2(i, s) << "\t\t"  << mdu2(i, s2) << "\t\t"  << mdu2(i, bitString) << "\n";
-   //    }
-
-
- //         cout << "\t\tTEST 2.3\n";
- //         for (int i = 15; i < 25; i++) {
- //                   cout << "L = " << i << ": " << empbo(i, s) << "\t\t"  << empbo(i, s2) << "\t\t"  << empbo(i, bitString) << "\n";
- //         }
+       cout << "\t\tTEST 2.2\n";
+       for (int i = 8; i < 18; i++) {
+                 cout << "L = " << i << ": " << mdu2(i, s) << "\t\t"  << mdu2(i, s2) << "\t\t"  << mdu2(i, bitString) << "\n";
+       }
 
 
- //       cout << "\t\tTEST 2.4\n";
-        
-//        cout << "\t" << series(s) << "\t\t" << series(s2) << "\t\t" << series(bitString) << "\n";
-
-   /* cout << "\t\tTEST 2.5-10invalid\n";
-        cout << "\t" << lseries(10, s) << "\t\t" << lseries(10, s2) << "\t\t" << lseries(10, bitString) << "\n";
-
-    cout << "\t\tTEST 2.5-8\n";
-        cout << "\t" << lseries(8, s) << "\t\t" << lseries(8, s2) << "\t\t" << lseries(8, bitString) << "\n";
-
-    cout << "\t\tTEST 2.5-128\n";
-        cout << "\t" << lseries(128, s) << "\t\t" << lseries(128, s2) << "\t\t" << lseries(128, bitString) << "\n";
-
-    cout << "\t\tTEST 2.5-512\n";
-        cout << "\t" << lseries(512, s) << "\t\t" << lseries(512, s2) << "\t\t" << lseries(512, bitString) << "\n";
-
-    cout << "\t\tTEST 2.5-1000\n";
-        cout << "\t" << lseries(1000, s) << "\t\t" << lseries(1000, s2) << "\t\t" << lseries(1000, bitString) << "\n";
-
-    cout << "\t\tTEST 2.5-10000\n";
-        cout << "\t" << lseries(10000, s) << "\t\t" << lseries(10000, s2) << "\t\t" << lseries(10000, bitString) << "\n";*/
+    //      cout << "\t\tTEST 2.3\n";
+    //      for (int i = 15; i < 25; i++) {
+    //                cout << "L = " << i << ": " << empbo(i, s) << "\t\t"  << empbo(i, s2) << "\t\t"  << empbo(i, bitString) << "\n";
+    //      }
 
 
-  /*cout << "\t\tTEST 2.6\n";
-        cout << "\t" << appent(s) << "\t\t" << appent(s2) << "\t\t" << appent(bitString) << "\n";*/
+    //    cout << "\t\tTEST 2.4\n";
+    //    
+    //    cout << "\t" << series(s) << "\t\t" << series(s2) << "\t\t" << series(bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-10invalid\n";
+    //    cout << "\t" << lseries(10, s) << "\t\t" << lseries(10, s2) << "\t\t" << lseries(10, bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-8\n";
+    //    cout << "\t" << lseries(8, s) << "\t\t" << lseries(8, s2) << "\t\t" << lseries(8, bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-128\n";
+    //    cout << "\t" << lseries(128, s) << "\t\t" << lseries(128, s2) << "\t\t" << lseries(128, bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-512\n";
+    //    cout << "\t" << lseries(512, s) << "\t\t" << lseries(512, s2) << "\t\t" << lseries(512, bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-1000\n";
+    //    cout << "\t" << lseries(1000, s) << "\t\t" << lseries(1000, s2) << "\t\t" << lseries(1000, bitString) << "\n";
+
+    //cout << "\t\tTEST 2.5-10000\n";
+    //    cout << "\t" << lseries(10000, s) << "\t\t" << lseries(10000, s2) << "\t\t" << lseries(10000, bitString) << "\n";
+
+  //cout << "\t\tTEST 2.6\n";
+  //      cout << "\t" << appent(s) << "\t\t" << appent(s2) << "\t\t" << appent(bitString) << "\n";
 
 
      //cout << "\t\tTEST 2.7\n";
      //   cout << "\t" << scapro(6, 11, s) << "\t\t" << scapro(6, 11, s2) << "\t\t" << scapro(4, 2, bitString) << "\n";
 
 
-       cout << "\t\tTEST 2.8\n";
-            cout << "\t" << scapro(6, 11, s) << "\t\t" << scapro(6, 11, s2) << "\t\t" << scapro(4, 2, bitString) << "\n";
+     //  cout << "\t\tTEST 2.8\n";
+     //       cout << "\t" << scapro(6, 11, s) << "\t\t" << scapro(6, 11, s2) << "\t\t" << scapro(4, 2, bitString) << "\n";
 }
