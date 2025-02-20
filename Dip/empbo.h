@@ -2,19 +2,24 @@
 
 double empbo(int l, string &x) {
 	string sub;
-	int nu0 = 0;
+	int nu0 = 0, k;
 	double u = pow(2, l), p = -1, e = M_E;
 	int m = x.length() / l;
 	double lam, lamp, nu, sig2;
-	map<string, int> v;
+	vector<int> vec(u);
+//	unordered_map<string, int> v;
 	for (int t = 0; t < m; t++) {
-		++v[x.substr(l * t, l)];
-	}
-	for (const auto& element : v) {
-		if (element.second > 0)
-		{
-			nu0 += 1;
+		k = 0;
+		for (int j = 0; j < l; j++) {
+			k <<= 1;
+			if (x[t + j] == '1')
+				k++;
 		}
+		vec[k]++;
+		//++v[x.substr(l * t, l)];
+	}
+	for (int i = 0; i<u; ++i){
+		if (vec[i] > 0) ++nu0;
 	}
 	int s = m - nu0;
 	lam = m / u;
