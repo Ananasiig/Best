@@ -43,7 +43,7 @@ double lseries(int l, string& x) {
 	for (int i = 0; i < m; i++) {
 		b.push_back(0);
 	}
-	cout << m << endl;
+	//cout << m << endl;
 
 	for (int i = 0; i < k+1; i++) {
 		v.push_back(0);
@@ -51,38 +51,51 @@ double lseries(int l, string& x) {
 
 	for (int i = 0; i < m; i++) {
 		cur = i*l;
-		next = i;
+		next = i*l;
 		while (next < i*l + l) {
+
+		cur = next;
+
 		if (x[cur] == '0') {
-			next = x.find('1', cur + 1);
+			next = x.find('1', cur);
+			cur = next;
 		}	
 		else if (x[cur] == '1') {
-			next = x.find('0', cur + 1);
-
+			next = x.find('0', cur);
+			if (next > i * l + l) {
+				next = i * l + l;
+			}
+			b[i] = max(b[i], int(next - cur));
 		}
-		b[i] = max(b[i], int(next - cur));
-		cur = next;
 	}
+	//	cout << b[i] << ' ' << m  << ' ' << x.substr(i*l, l)  << endl;
 	}
 
 	for (int i = 0; i < m; i++) {
-		if (b[i] - 1 <= d[ij]) {
+		if (b[i] <= d[ij]) {
 			v[0]++;
 		}
-		else if (b[i] - 1 >= d[ij + k]) {
+		else if (b[i] >= d[ij + k]) {
 			v[k]++;
 		}
-		else 
+		else	
 			for (int j = 1; j < k; j++) {
-				if (b[i] - 1 == d[ij + j]) {
+				if (b[i] == d[ij + j]) {
 				v[j]++;
 			}
 		}
 	}
 
+	for (int i = 0; i < k + 1; i++) {
+	//	cout << v[i] << ' ';
+			//	cout << v[i] << ' ' << m * pi[ij + i] << ' ' << m << ' ' << pi[ij + i] << endl;
+	}
+//	cout << endl;
+
 	for (int i = 0; i < k+1; i++) {
 		s += pow(v[i] - m * pi[ij + i], 2)/(m*pi[ij+i]);
-//		cout << v[i] << ' ' << m * pi[ij + i] << ' ' << s << endl;
-	}
-	return 1 - gamain(s, k, 1);
+	//	cout << v[i] << ' ' << m * pi[ij + i] << ' ' << m << ' ' << pi[ij + i] << endl;
+	} 
+//	cout << s << ' ' << k << endl;
+	return 1 - gamain(0.5*s, 0.5*k, 1);
 }

@@ -5,21 +5,18 @@ double mdu(int l, string &x) {
 
 	int m, u = pow(2, l), k;
 	m = x.length() / l;
-	map<string, int> v;
 	string sub;
 	double svalue = 0, m2_l = 1.0*m/u;
 	vector<int> vec(u);
-	if (m < 50 || m2_l < 10) { return -1; }
+	if (m < 50 || m2_l < 10) { cout << endl << m << ' ' << m2_l << " "; return -1; }
 
 	//частоты l-фрагментов
-	for (int t = 0; t < m; t++) {/*
-		sub = x.substr(l*t, l);
-		++v[sub];*/
+	for (int t = 0; t < m; t++) {
 
 		k = 0;
 		for (int j = 0; j < l; j++) {
 			k <<= 1;
-			if (x[t + j] == '1')
+			if (x[t*l + j] == '1')
 				k++;
 		}
 		vec[k]++;
@@ -28,13 +25,15 @@ double mdu(int l, string &x) {
 	}
 
 	//вычисление статистики
-	for (int i = 0; i < u; i++) {
-		svalue += 1.0 * pow(vec[i] - m2_l, 2) / m2_l;
-//		cout << element.first << ' ' << m2_l << '\n';
+	for (int i = 0; i < u; ++i) {
+		svalue += pow(vec[i] - m2_l, 2);
+	//	cout << vec[i] << ' ' << m2_l << '\n';
 	}
+
+	svalue /= m2_l;
 //	cout << '\t' << u << ' ' << v.size() << '\n';
-//	cout << svalue << '\n';
+//x	cout << svalue <<  ' ' << u-1 << '\n';
 
 	//возвращаем P-значение
-	return 1 - gamain(svalue, u - 1, 1);
+	return 1 - gamain(svalue/2, 0.5*(u - 1), 1);
 }

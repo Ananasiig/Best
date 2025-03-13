@@ -4,13 +4,16 @@ double series(string &x) {
 	string exam = "";
 	vector<double> nui;
 	int k = 0;
-	map<string, int> v;
+	map<string, int> v0, v1;
 	double nu = 10, s = 0;
+
 	while(nu >= 5) {
-		nu = (x.length() - k + 3) / pow(2, k + 3);
-		nui.push_back(nu);
 		k++;
+		nu = (x.length() - k + 3) / pow(2, k + 2);
+		nui.push_back(nu);
 	}
+	k--;
+	nui.pop_back();
 
 	for (int i = 0; i < k; i++) {
 		exam += '0';
@@ -22,19 +25,21 @@ double series(string &x) {
 	size_t cur = 0, next = 0;
 	while (next != string::npos) {
 		if (x[cur] == '0') {
-			next = x.find('1', cur+1);
+			next = x.find('1', cur);
+			++v0[x.substr(cur, next - cur)];
 		}
 		else if (x[cur] == '1') {
-			next = x.find('0', cur+1);
+			next = x.find('0', cur);
+			++v1[x.substr(cur, next - cur)];
 		}
 //		cout << x.substr(cur, next - cur) << endl;
-		++v[x.substr(cur, next - cur)];
 		cur = next;
 	}
 	for (int i = 0; i < k; i++) {
-//		cout << nui[i] << ' ' << v[exam.substr(0, i + 1)] << endl;
-		s += (pow(v[exam.substr(0, i + 1)] - nui[i], 2) + (pow(v[exam.substr(k, i + 1)] - nui[i], 2)) )/ nui[i];
+	//	cout << nui[i] << ' ' << v0[exam.substr(0, i + 1)] << ' ' << v1[exam.substr(k, i+1)] << endl;
+		s += (pow(v0[exam.substr(0, i + 1)] - nui[i], 2) + (pow(v1[exam.substr(k, i + 1)] - nui[i], 2)) )/ nui[i];
 		}
-//	cout << s << ' ' << v.size() << endl;
-	return 1-gamain(s, 2*k-2, 1);
+//	cout << '\n' << exam << ' ' << exam.find('1') << ' ' << (x.length() - 12 + 3) / pow(2, 12 + 2) << ' ' << (x.length() - k + 3) / pow(2, k + 2) << endl;
+		//	cout << s << ' ' << v.size() << endl;
+	return 1-gamain(s/2, k-1, 1);
 }

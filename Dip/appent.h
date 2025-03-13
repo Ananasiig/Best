@@ -16,7 +16,7 @@ double appent(string& x) {
 	n = x.length();
 
 	vector<int> vec(u), vec1(0.5*u);
-//	cout << l << "\n";
+//	cout << "\n" << l << "\n";
 //	cout << n << "\n";
 
 	for (int i = 0; i <= n - l; i++) {
@@ -58,6 +58,6 @@ double appent(string& x) {
 	apen = f - f1;
 
 	s = 2 * (n-l+1) * fabs(log(2) - apen);
-//	cout << f << ' ' << f1 << ' ' << apen << ' ' << 0.5*u << ' ' << s << "\n";
+//	cout << f << ' ' << f1 << ' ' << apen << ' ' << 0.25*u << ' ' << s/2 << "\n";
 	return 1 - gamain(s/2, 0.25*u, 1);
 }
