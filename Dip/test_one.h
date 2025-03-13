@@ -3,7 +3,7 @@
 void test_one(ofstream& out, string& bitString, int m, int k, double a, double b, vector<vector <double>>& res) {
 
     string test = "";
-    double pvalue1 = 0, pmin = 1;
+    double pvalue1 = 0, pmin = 1, bmin = 1, cmin = 1;
     vector <vector <double>> pvalue(8, vector<double>());
 
     int l = bitString.length() / m;
@@ -63,11 +63,12 @@ void test_one(ofstream& out, string& bitString, int m, int k, double a, double b
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < m; ++j) {
             out << '\t' << pvalue[i][j];
+            pmin = min(pmin, pvalue[i][j]);
         }
         out << "\nBernoulli: " << res[0][i] << "\nChi:" << res[1][i] << "\n\n";
 
-        pmin = min(res[0][i], pmin);
-        pmin = min(res[1][i], pmin);
+        bmin = min(res[0][i], pmin);
+        cmin = min(res[1][i], pmin);
 
         if (i == 0) out << "\t\ttest Long Series\n\nP-value(s):" << endl;
 
