@@ -136,8 +136,8 @@ int main()
             #pragma omp critical
             {
                 output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть ["
-                    + to_string((results.size() / part + 1) * i * mb10) + ", "
-                    + to_string((results.size() / part + 1) * (i + 1) * mb10) + "]\n";
+                    + to_string(results.size() * mb10 + i * mb10) + ", "
+                    + to_string(results.size() * mb10 + (i + 1) * mb10) + "]\n";
                 cout << output;
             }
 
