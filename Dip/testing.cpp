@@ -80,11 +80,11 @@ int main()
     double G = 0.1;
     int it = 0, numthr = 1, num = inFileSize/mb10, part;
 
-    cout << "file [" << infilename << "] size: " << inFileSize << endl;
+    cout << "file [" << infilename << "] size: " << inFileSize << ' ' << omp_get_max_threads() << endl;
 
-    if (num < 10) numthr = num;
-    else numthr = 10;
-    if (omp_get_max_threads()-2 < numthr) numthr = omp_get_max_threads()-2;
+    if (num < omp_get_max_threads()-2) numthr = num;
+    else numthr = omp_get_max_threads()-2;
+    while (num % numthr != 0) numthr - 1;
     part = numthr;
 
     cout << "max threads: " << omp_get_max_threads() << endl;
@@ -108,7 +108,7 @@ int main()
                 #pragma omp parallel for num_threads(numthr)
                 for (int i = 0; i < part; ++i) {
                     output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть [" 
-                            + to_string((results.size() / part + 1)*i * mb10) + ", "
+                            + to_string((results.size() / part + 1) * i * mb10) + ", "
                             + to_string((results.size() / part + 1) * (i + 1) * mb10) + "]\n";
                     #pragma omp critical
                     {
