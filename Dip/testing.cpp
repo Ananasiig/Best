@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
-int fullOutputFlag = 1, inFileSize = 0;
+int fullOutputFlag = 1;
+unsigned long long int inFileSize = 0;
 double progress = 0;
 
 #include <random>
@@ -46,8 +47,10 @@ int main()
     vector<vector <double>> res(2, vector<double>(8));
     vector<vector<vector <double>>> results;
     vector <string> bitStrings;
-    string sbitString, bitString2;
+    string bitString, bitString1 = "", output; 
+    char byte;
     char byte1;
+    int mb10 = 83886080, mb1 = 8388608;
 
     cout << "Введите полный путь к файлу\nПример: E:" << "\\\\" << "labs" << "\\\\" << "l0" << "\\\\" << "rnd_10MB.bin" << endl;
 
@@ -58,23 +61,24 @@ int main()
         if (e.is_open()) cout << "file " << infilename << " was opened.\n";
         else cout << "file " << infilename << " was not opened.\n" << "try again\n";
     }
+    if (out.is_open()) cout << "file " << outfilename << " was opened.\n\n";
+
     // Перемещаем указатель в конец файла
     e.seekg(0, ios::end);
 
     // Получаем текущую позицию указателя (это и будет размер файла)
     streampos fileSize = e.tellg();
-    inFileSize = 8 * fileSize;
+    inFileSize =  fileSize * 8;
 
     e.seekg(0, ios::beg);
 
-    if (out.is_open()) cout << "file " << outfilename << " was opened.\n\n";
 
     cout << "Выводить p-значения в файл?\n0 - не выводить\n1 - выводить\n";
 
     cin >> fullOutputFlag; 
 
     double G = 0.1;
-    int it = 0, numthr = 1, num = inFileSize/83886080, part;
+    int it = 0, numthr = 1, num = inFileSize/mb10, part;
 
     cout << "file [" << infilename << "] size: " << inFileSize << endl;
 
@@ -85,11 +89,7 @@ int main()
 
     cout << "max threads: " << omp_get_max_threads() << endl;
     cout << "Количество потоков: " << numthr << endl;
-
-    string bitString = ""; 
     
-    string bitString1 = "", output; 
-    char byte;
 
 
 
@@ -99,7 +99,7 @@ int main()
         reverse(bitString1.begin(), bitString1.end());
         bitString += bitString1;
 
-        if (bitString.length() == 83886080) {
+        if (bitString.length() == mb10) {
             bitStrings.push_back(bitString);
             bitString.clear();
 
@@ -107,11 +107,11 @@ int main()
 
                 #pragma omp parallel for num_threads(numthr)
                 for (int i = 0; i < part; ++i) {
+                    output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть [" 
+                            + to_string((results.size() / part + 1)*i * mb10) + ", "
+                            + to_string((results.size() / part + 1) * (i + 1) * mb10) + "]\n";
                     #pragma omp critical
                     {
-                        output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть [" 
-                            + to_string((results.size() / part + 1)*i * 83886080) + ", "
-                            + to_string((results.size() / part + 1) * (i + 1) * 83886080) + "]\n";
                         cout << output;
                     }
 
@@ -136,8 +136,8 @@ int main()
             #pragma omp critical
             {
                 output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть ["
-                    + to_string((results.size() / part + 1) * i * 83886080) + ", "
-                    + to_string((results.size() / part + 1) * (i + 1) * 83886080) + "]\n";
+                    + to_string((results.size() / part + 1) * i * mb10) + ", "
+                    + to_string((results.size() / part + 1) * (i + 1) * mb10) + "]\n";
                 cout << output;
             }
 
@@ -153,15 +153,15 @@ int main()
     }
 
     if (results.size() == 0) {
-        while (e.get(byte1)) {
+        while (e.get(byte)) {
             // Преобразование каждого байта в строку из 8 бит
-            bitString2 = bitset<8>(static_cast<unsigned char>(byte1)).to_string();
-            reverse(bitString2.begin(), bitString2.end());
-            sbitString += bitString2;
-            if (sbitString.length() == 8388608) {
-                test_one(out, sbitString, 104, 10, 0.05, 0.0001, res);
+            bitString1 = bitset<8>(static_cast<unsigned char>(byte)).to_string();
+            reverse(bitString1.begin(), bitString1.end());
+            bitString += bitString1;
+            if (bitString.length() == mb1) {
+                test_one(out, bitString, 104, 10, 0.05, 0.0001, res);
                 results.push_back(res);
-                sbitString = "";
+                bitString = "";
             }
         }
         if (results.size() > 1) {

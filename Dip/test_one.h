@@ -1,5 +1,6 @@
 #pragma once
-extern int fullOutputFlag, inFileSize;
+extern int fullOutputFlag;
+extern unsigned long long int inFileSize;
 extern double progress;
 
 void test_one(ofstream& out, string& bitString, int m, int k, double a, double b, vector<vector <double>>& res) {

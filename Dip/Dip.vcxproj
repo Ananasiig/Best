@@ -131,8 +131,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2igamc.h" />
+    <ClInclude Include="appent.h" />
+    <ClInclude Include="ber.h" />
+    <ClInclude Include="chi.h" />
+    <ClInclude Include="dfft.h" />
+    <ClInclude Include="empbo.h" />
+    <ClInclude Include="lseries.h" />
     <ClInclude Include="mduois.h" />
     <ClInclude Include="mduonis.h" />
+    <ClInclude Include="normal.h" />
+    <ClInclude Include="scapro.h" />
+    <ClInclude Include="series.h" />
+    <ClInclude Include="spect.h" />
+    <ClInclude Include="test_n.h" />
+    <ClInclude Include="test_one.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
