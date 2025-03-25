@@ -1,7 +1,7 @@
 #pragma once
 
 double empbo(int l, string &x) {
-
+	
 	double u = pow(2, l), p = -1, e = M_E;
 	int m = x.length() / l;
 	int nu0 = 0, k;

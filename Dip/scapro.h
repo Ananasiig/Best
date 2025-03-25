@@ -81,3 +81,4 @@ double scapro(int m, int K, string& x) {
 
 	return 1 - gamain(s/2, 0.5*m, 1);
 }
+		

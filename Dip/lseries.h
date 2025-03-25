@@ -1,6 +1,10 @@
 #pragma once
 
-double lseries(int l, string& x) {
+double lseries(string& x) {
+	int l = 0;
+	if (x.length() < 149000) l = 128;
+	else l = 10000;
+
 	int ij, k;
 	if (l == 8) {
 		ij = 0;

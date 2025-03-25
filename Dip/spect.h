@@ -40,7 +40,6 @@ double spect(string& x) {
 	N_o = (double)0.95 * n / 2.0;
 	d = sqrt(N_o*0.05);
 
-	//cout << N_l << ' ' << N_o << ' ' << d << ' ' << (N_l - N_o) / d << endl;
 	p_value = 2*(1 - norm_fun(fabs(N_l - N_o)/d, 0, 1));
 
 

@@ -1,14 +1,23 @@
 #pragma once
 
-double mdu(int l, string &x) {
-	//ÓÑËÎÂÈß ÏÐÈÌÅÍÅÍÈß: m >=50, m2_l >= 10
-
-	int m, u = pow(2, l), k;
-	m = x.length() / l;
-	string sub;
+double mdu(string &x) {
+	int l = 1, m = x.length(), u = 2, k;
 	double svalue = 0, m2_l = 1.0*m/u;
+
+	//ÓÑËÎÂÈß ÏÐÈÌÅÍÅÍÈß: m >=50, m2_l >= 10
+	while (m >= 50 && m2_l >= 10) {
+		l++;
+		m = x.length() / l;
+		u *= 2;
+		m2_l = (double)m / u;
+	}
+	--l;
+	m = x.length() / l;
+	u /= 2;
+	m2_l = (double)m / u;
+
+	string sub;
 	vector<int> vec(u);
-	if (m < 50 || m2_l < 10) { cout << endl << m << ' ' << m2_l << " "; return -1; }
 
 	//÷àñòîòû l-ôðàãìåíòîâ
 	for (int t = 0; t < m; t++) {
@@ -26,7 +35,7 @@ double mdu(int l, string &x) {
 
 	//âû÷èñëåíèå ñòàòèñòèêè
 	for (int i = 0; i < u; ++i) {
-		svalue += pow(vec[i] - m2_l, 2);
+		svalue += pow(m2_l - vec[i], 2);
 	//	cout << vec[i] << ' ' << m2_l << '\n';
 	}
 

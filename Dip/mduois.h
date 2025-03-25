@@ -1,11 +1,16 @@
 #pragma once
 
-double mdu2(int l, string &x) {
+double mdu2(string &x) {
 	//УСЛОВИЯ ПРИМЕНЕНИЯ: n >= 20 * 2^l (l <= log2(n/20))
+	int l = 1;
+	while (l <= log2(0.05 * x.length())) {
+		++l;
+	}
+	--l;
 
 	int u = pow(2, l), u2 = u / 2, k;
 
-	if (x.length() < 20 * u) { cout << x.length() << ' ' << 20 * u << '\n'; return -1; }
+	if (x.length() < 20 * u) { cout << x.length() << ' ' << 20 * u << " \n-1\n"; return -1; }
 
 	vector<int> vec(u), vec1(u2);
 	string sub;
@@ -38,17 +43,19 @@ double mdu2(int l, string &x) {
 	//вычисление статистики
 
 	for (int i = 0; i < u; i++) {
-		gvalue += 1.0 * pow(vec[i] - n2_l, 2);
+		gvalue += pow(n2_l - vec[i], 2);
 		//		cout << vec[i]<< ' ' << vec1[i] << endl;
 	}
 	gvalue /= n2_l;
 
 	for (int i = 0; i < u2; i++) {
-		gvalue2 += 1.0 * pow(vec1[i] - n2_l1, 2);
+		gvalue2 += pow(n2_l1 - vec1[i], 2);
 	}
 	gvalue2 /= n2_l1;
 
 	svalue = gvalue - gvalue2;
+
+	x.erase(x.length() - l, l);
 		//возвращаем P-значение
 	return 1 - gamain(svalue/2, 0.5*u2, 1);
 }
