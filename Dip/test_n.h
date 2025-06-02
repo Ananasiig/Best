@@ -24,8 +24,8 @@ void test_n(ofstream& out, vector<vector<vector <double>>>& results, int m, int 
 	}
 
 	if (vmin >= dmin && vmin <= dmax) out << "\n\n\n-----------------------------------------\nH0, Vmin = " 
-		<< vmin << "\tVmin принадлежит [" << dmin << ", " << dmax << "]" << endl
+		<< vmin << "\tVmin belongs to [" << dmin << ", " << dmax << "]" << endl
 		<< "-----------------------------------------\n";
-	else out << "\n\n\n-----------------------------------------\nH1, Vmin = " << vmin << "\tVmin не принадлежит[" << dmin << ", " << dmax << "]" << endl
+	else out << "\n\n\n-----------------------------------------\nH1, Vmin = " << vmin << "\tVmin don't belong to [" << dmin << ", " << dmax << "]" << endl
 		<< "-----------------------------------------\n";
 }

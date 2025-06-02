@@ -2,19 +2,19 @@
 
 double norm_fun(double x, double mean, double sd)
 {
-	// Значение функции распределения нормального распределения 
-	// со средним mean и стандартным отклонением sd
+	// Value of normal distribution function
+	// with mean and standard deviation
 
 	if (sd < 0)
-		return 0.0; // TODO: Ошибка или NAN
+		return 0.0; // TODO: error or NAN
 
 	// Нормируем x:
 	if (sd == 0)
 		sd = 1E-10;
-	/* TODO: Рассмотреть случай sd == 0. R выдает что-то разумное */
+		sd = 1E-10;
 	x = (x - mean) / sd;
 
-	// Взято из http://www.johndcook.com/cpp_phi.html
+	// code from http://www.johndcook.com/cpp_phi.html
 	// constants
 	double a1 = 0.254829592;
 	double a2 = -0.284496736;

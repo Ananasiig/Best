@@ -90,9 +90,6 @@ void test_one(ofstream& out, string& bitString, int m, int k, double a, double b
             else if (i == 5) out << "\t\ttest Spectral\n\nP-value(s):" << endl;
 
             else if (i == 6) out << "\t\ttest Scalar\n\nP-value(s):" << endl;
-
-            //   cout << (double)(i + 1) * 100 / 8 << "%\n";
-
         }
     }
     else

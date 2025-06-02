@@ -8,13 +8,13 @@ double spect(string& x) {
 	int		i, count, ifac[15], n = x.length();
 
 	try {
-		X = new double[n]();      // Выделение памяти и инициализация нулями
+		X = new double[n]();      // memory allocation and initialization with zeros
 		wsave = new double[2 * n]();
 		m = new double[n / 2 + 1]();
 	}
 	catch (const bad_alloc& e) {
 		cerr << "\t\tUnable to allocate working arrays for the DFT: " << e.what() << std::endl;
-		delete[] X;     // Освобождение памяти, если она была выделена
+		delete[] X;     // freeing memory if it was allocated
 		delete[] wsave;
 		delete[] m;
 		return -1;
@@ -35,7 +35,6 @@ double spect(string& x) {
 		if (m[i] < upperBound)
 			count++;
 	}
-//	percentile = (double)count / (n / 2) * 100;
 	N_l = (double)count;       /* number of peaks less than h = sqrt(3*n) */
 	N_o = (double)0.95 * n / 2.0;
 	d = sqrt(N_o*0.05);
@@ -43,7 +42,7 @@ double spect(string& x) {
 	p_value = 2*(1 - norm_fun(fabs(N_l - N_o)/d, 0, 1));
 
 
-	delete[] X;     // Освобождение памяти, если она была выделена
+	delete[] X;     // freeing memory if it was allocated
 	delete[] wsave;
 	delete[] m;
 

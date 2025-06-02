@@ -32,14 +32,10 @@ double series(string &x) {
 			next = x.find('0', cur);
 			++v1[x.substr(cur, next - cur)];
 		}
-//		cout << x.substr(cur, next - cur) << endl;
 		cur = next;
 	}
 	for (int i = 0; i < k; i++) {
-	//	cout << nui[i] << ' ' << v0[exam.substr(0, i + 1)] << ' ' << v1[exam.substr(k, i+1)] << endl;
 		s += (pow(v0[exam.substr(0, i + 1)] - nui[i], 2) + (pow(v1[exam.substr(k, i + 1)] - nui[i], 2)) )/ nui[i];
 		}
-//	cout << '\n' << exam << ' ' << exam.find('1') << ' ' << (x.length() - 12 + 3) / pow(2, 12 + 2) << ' ' << (x.length() - k + 3) / pow(2, k + 2) << endl;
-		//	cout << s << ' ' << v.size() << endl;
 	return 1-gamain(s/2, k-1, 1);
 }

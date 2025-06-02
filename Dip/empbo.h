@@ -16,18 +16,15 @@ double empbo(int l, string &x) {
 				k++;
 		}
 		vec[k]++;
-		//++v[x.substr(l * t, l)];
 	}
 	for (int i = 0; i<u; ++i){
 		if (vec[i] == 0) nu0++;
 	}
 	double s = m - (u-nu0);
-//	cout << s << ' ' << m << ' ' << u << ' ' << nu0;
 	lam = 1.0 * m / u;
 	lamp = lam * m / 2;
 	nu = pow(e, - lam) * u;
 	sig2 = nu * (1.0 - (1.0 + lam)*pow(e, -lam));
-//	cout << s  << ' ' << lamp << ' ' <<  nu-(u-nu0) << endl;
 	if (lam <= 1.0 / 32) {
 		p = gamain(lamp, s, 1);
 	}

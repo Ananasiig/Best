@@ -40,7 +40,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, ".1251");
-    string infilename = ""; //E:\\labs\\l0\\rnd_10MB.bin
+    string infilename = ""; //f.e. : "E:\\labs\\l0\\rnd_10MB.bin"
     string outfilename = "rnd.txt";
     ifstream e(infilename, ios::binary);
     ofstream out(outfilename);
@@ -52,7 +52,7 @@ int main()
     char byte1;
     int mb10 = 83886080, mb1 = 8388608;
 
-    cout << "Введите полный путь к файлу\nПример: E:" << "\\\\" << "labs" << "\\\\" << "l0" << "\\\\" << "rnd_10MB.bin" << endl;
+    cout << "Enter the full path to the file:\n" << endl;
 
 
     while (!e.is_open()) {
@@ -73,7 +73,7 @@ int main()
     e.seekg(0, ios::beg);
 
 
-    cout << "Выводить p-значения в файл?\n0 - не выводить\n1 - выводить\n";
+    cout << "Write p-values to file?\n0 - don't write\n1 - write\n";
 
     cin >> fullOutputFlag; 
 
@@ -94,8 +94,7 @@ int main()
 
 
     while (e.get(byte)) {
-        // Преобразование каждого байта в строку из 8 бит
-        bitString1 = bitset<8>(static_cast<unsigned char>(byte)).to_string();
+        bitString1 = bitset<8>(static_cast<unsigned char>(byte)).to_string(); // Convert each byte into a string of 8 bits
         reverse(bitString1.begin(), bitString1.end());
         bitString += bitString1;
 
@@ -109,9 +108,9 @@ int main()
                 for (int i = 0; i < part; ++i) {
                     #pragma omp critical
                     {
-                        output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть [" 
+                        output = "Stream " + to_string(omp_get_thread_num()) + ": processes [" 
                             + to_string(results.size() * mb10 + i * mb10) + ", "
-                            + to_string(results.size() * mb10 + (i + 1) * mb10) + "]\n";
+                            + to_string(results.size() * mb10 + (i + 1) * mb10) + "] bits\n";
                         cout << output;
                     }
 
@@ -135,9 +134,9 @@ int main()
         for (int i = 0; i < bitStrings.size(); ++i) {
             #pragma omp critical
             {
-                output = "Поток " + to_string(omp_get_thread_num()) + ": обрабатывает часть ["
+                output = "Stream " + to_string(omp_get_thread_num()) + ": processes ["
                     + to_string(results.size() * mb10 + i * mb10) + ", "
-                    + to_string(results.size() * mb10 + (i + 1) * mb10) + "]\n";
+                    + to_string(results.size() * mb10 + (i + 1) * mb10) + "] bits\n";
                 cout << output;
             }
 
@@ -154,8 +153,7 @@ int main()
 
     if (results.size() == 0) {
         while (e.get(byte)) {
-            // Преобразование каждого байта в строку из 8 бит
-            bitString1 = bitset<8>(static_cast<unsigned char>(byte)).to_string();
+            bitString1 = bitset<8>(static_cast<unsigned char>(byte)).to_string();  // Convert each byte into a string of 8 bits
             reverse(bitString1.begin(), bitString1.end());
             bitString += bitString1;
             if (bitString.length() == mb1) {

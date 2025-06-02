@@ -47,7 +47,6 @@ double lseries(string& x) {
 	for (int i = 0; i < m; i++) {
 		b.push_back(0);
 	}
-	//cout << m << endl;
 
 	for (int i = 0; i < k+1; i++) {
 		v.push_back(0);
@@ -72,7 +71,6 @@ double lseries(string& x) {
 			b[i] = max(b[i], int(next - cur));
 		}
 	}
-	//	cout << b[i] << ' ' << m  << ' ' << x.substr(i*l, l)  << endl;
 	}
 
 	for (int i = 0; i < m; i++) {
@@ -91,15 +89,10 @@ double lseries(string& x) {
 	}
 
 	for (int i = 0; i < k + 1; i++) {
-	//	cout << v[i] << ' ';
-			//	cout << v[i] << ' ' << m * pi[ij + i] << ' ' << m << ' ' << pi[ij + i] << endl;
 	}
-//	cout << endl;
 
 	for (int i = 0; i < k+1; i++) {
 		s += pow(v[i] - m * pi[ij + i], 2)/(m*pi[ij+i]);
-	//	cout << v[i] << ' ' << m * pi[ij + i] << ' ' << m << ' ' << pi[ij + i] << endl;
 	} 
-//	cout << s << ' ' << k << endl;
 	return 1 - gamain(0.5*s, 0.5*k, 1);
 }
