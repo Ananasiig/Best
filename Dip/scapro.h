@@ -48,8 +48,8 @@ double scapro(int m, int K, string& x) {
 		qmin = min(qmin, qk[k]);
 	}
 	if (1.0 * K / qmin > 0.1 * x.length() / m) { cout << qmin << ' ' << 1.0 * K / qmin << ' ' << 0.1 * x.length() / m << '\n';  return -1; }
-	if (m != 2 && m != 3 && m != 4 && m != 5 && m != 6 && m != 7 && m != 8) { return -1; }
-	if (K != 2 && K != 3 && K != 4 && K != 5 && K != 6 && K != 7 && K != 8 && K != 9 && K != 10 && K != 11) { return -1; }
+	if (m < 2 || m > 8) { return -1; }
+	if (K < 2 || K > 11) { return -1; }
 
 	for (int i = 0; i < M; i++) {
 		for (int j = 1; j < K; j++) {
