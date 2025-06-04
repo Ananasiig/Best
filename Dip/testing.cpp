@@ -78,13 +78,25 @@ int main()
     cin >> fullOutputFlag; 
 
     double G = 0.1;
-    int it = 0, numthr = 1, num = inFileSize/mb10, part;
+    int it = 0, numthr = 1, num = inFileSize/mb10, part = 1, parts;
 
     cout << "file [" << infilename << "] size: " << inFileSize << ' ' << omp_get_max_threads() << endl;
 
+    if (num == 0) {
+        num = inFileSize / mb1;
+        if (num == 0) return;
+    }
+    
     if (num < omp_get_max_threads()-2) numthr = num;
     else numthr = omp_get_max_threads()-2;
-    while (num % numthr != 0) numthr -= 1;
+    parts = num / numthr;
+    while (num % numthr != 0) {
+        numthr -= 1;
+        if (parts > num / numthr) {
+            numthr += 1;
+            break;
+        }
+    }
     part = numthr;
 
     cout << "max threads: " << omp_get_max_threads() << endl;

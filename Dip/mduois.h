@@ -55,6 +55,6 @@ double mdu2(string &x) {
 	svalue = gvalue - gvalue2;
 
 	x.erase(x.length() - l, l);
-		//return P-value
+		//return P-value q
 	return 1 - gamain(svalue/2, 0.5*u2, 1);
 }
