@@ -63,10 +63,10 @@ int main()
     }
     if (out.is_open()) cout << "file " << outfilename << " was opened.\n\n";
 
-    // Перемещаем указатель в конец файла
+    // Move pointer to the end of file
     e.seekg(0, ios::end);
 
-    // Получаем текущую позицию указателя (это и будет размер файла)
+    // get the current position of the pointer (==the file size)
     streampos fileSize = e.tellg();
     inFileSize =  fileSize * 8;
 
@@ -84,7 +84,7 @@ int main()
 
     if (num < omp_get_max_threads()-2) numthr = num;
     else numthr = omp_get_max_threads()-2;
-    while (num % numthr != 0) numthr - 1;
+    while (num % numthr != 0) numthr -= 1;
     part = numthr;
 
     cout << "max threads: " << omp_get_max_threads() << endl;
