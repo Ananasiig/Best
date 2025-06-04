@@ -11,7 +11,6 @@ double norm_fun(double x, double mean, double sd)
 	// Нормируем x:
 	if (sd == 0)
 		sd = 1E-10;
-		sd = 1E-10;
 	x = (x - mean) / sd;
 
 	// code from http://www.johndcook.com/cpp_phi.html

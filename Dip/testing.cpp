@@ -84,7 +84,7 @@ int main()
 
     if (num == 0) {
         num = inFileSize / mb1;
-        if (num == 0) return;
+        if (num == 0) return 0;
     }
     
     if (num < omp_get_max_threads()-2) numthr = num;
@@ -92,10 +92,6 @@ int main()
     parts = num / numthr;
     while (num % numthr != 0) {
         numthr -= 1;
-        if (parts > num / numthr) {
-            numthr += 1;
-            break;
-        }
     }
     part = numthr;
 
@@ -115,7 +111,6 @@ int main()
             bitString.clear();
 
             if (bitStrings.size() == part) {
-
                 #pragma omp parallel for num_threads(numthr)
                 for (int i = 0; i < part; ++i) {
                     #pragma omp critical
